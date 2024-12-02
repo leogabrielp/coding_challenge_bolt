@@ -1,0 +1,78 @@
+version: 2
+
+models:
+  - name: staging_customer
+    description: "Staging table for customer data."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - not_null
+          - unique
+      - name: customer_full_name
+        description: "Full name of the customer."
+      - name: email
+        description: "Email address of the customer."
+      - name: customer_group_id
+        description: "id of the customer group."
+      - name: phone_number
+        description: "Phone number of the customer."
+      - name: meta_processing_tyme
+        description: "Timestamp when the record was last updated."
+
+  - name: staging_aeroplane
+    description: "Staging table for aeroplane data."
+    columns:
+      - name: aeroplane_id
+        description: "Unique identifier for the airplane."
+        tests:
+          - not_null
+          - unique
+      - name: aeroplane_model
+        description: "Model of the aeroplane."
+      - name: manufacturer
+        description: "Manufacturer of the aeroplane."
+      - name: meta_processing_tyme
+        description: "Timestamp when the record was last updated."
+
+  - name: staging_trip
+    description: "Staging table for trip data."
+    columns:
+      - name: trip_id
+        description: "Unique identifier for the trip."
+        tests:
+          - not_null
+          - unique
+      - name: origin_city
+        description: "City where the trip originates."
+      - name: destination_city
+        description: "City where the trip terminates."
+      - name: aeroplane_id
+        description: "Unique identifier for the aeroplane used for the trip."
+      - name: start_timestamp
+        description: "Start timestamp of the trip."
+      - name: end_timestamp
+        description: "End timestamp of the trip."
+      - name: meta_processing_tyme
+        description: "Timestamp when the record was last updated."
+
+  - name: staging_order
+    description: "Staging table for order data."
+    columns:
+      - name: order_id
+        description: "Unique identifier for the order."
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Unique identifier for the customer placing the order."
+      - name: trip_id
+        description: "Unique identifier for the trip associated with the order."
+      - name: price_eur
+        description: "Amount in EURO paid for the order by the customer."
+      - name: seat_number
+        description: "The number of the seat booked by the customer."
+      - name: status
+        description: "Status of the order."
+      - name: meta_processing_tyme
+        description: "Timestamp when the record was last updated."

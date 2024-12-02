@@ -1,0 +1,12 @@
+version: 2
+
+sources:
+  - name: raw_data
+    schema: raw_data
+    tables:
+      - name: raw_customer
+      - name: raw_customer_group
+      - name: raw_aeroplane
+      - name: raw_trip
+      - name: raw_order
+      - name: raw_aeroplane_model
