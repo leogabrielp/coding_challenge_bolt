@@ -17,7 +17,7 @@ WITH customer AS (
     cust.meta_processing_time   AS customer_meta_processing_time
     FROM {{ ref('staging_customer') }} cust
     LEFT JOIN {{ ref('staging_customer_group') }} grou
-    ON cust.customer_id=grou.customer_id
+    ON cust.customer_group_id=grou.customer_group_id
 )
 
 SELECT
@@ -27,5 +27,5 @@ customer_group_id,
 email,
 phone_number,
 customer_group_name,
-meta_processing_time
+customer_meta_processing_time
 FROM customer

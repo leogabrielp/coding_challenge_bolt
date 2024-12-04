@@ -4,6 +4,8 @@
     tags=['star_schema']
 ) }}
 
+WITH
+
 fleet AS (
 
     SELECT 
