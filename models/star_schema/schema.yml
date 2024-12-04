@@ -1,0 +1,114 @@
+version: 2
+
+models:
+  - name: dim_aeroplane_fleet
+    description: "Dimension table for aeroplane fleet details."
+    columns:
+      - name: aeroplane_id
+        description: "Unique identifier for the aeroplane."
+        tests:
+          - unique
+          - not_null
+      - name: aeroplane_model
+        description: "Model of the aeroplane."
+      - name: aeroplane_model_id
+        description: "Surrogate key for aeroplane model."
+        tests:
+          - not_null
+      - name: aeroplane_manufacturer
+        description: "Manufacturer of the aeroplane model."
+      - name: manufacturer
+        description: "Manufacturer of the specific aeroplane."
+      - name: meta_processing_time
+        description: "Timestamp of when the record was processed."
+
+  - name: dim_customer
+    description: "Dimension table for customer details."
+    columns:
+      - name: customer_id
+        description: "Unique identifier for the customer."
+        tests:
+          - unique
+          - not_null
+      - name: customer_full_name
+        description: "Full name of the customer."
+      - name: customer_group_id
+        description: "Group ID associated with the customer."
+        tests:
+          - not_null
+      - name: email
+        description: "Email address of the customer."
+        tests:
+          - not_null
+      - name: phone_number
+        description: "Phone number of the customer."
+      - name: customer_group_name
+        description: "Name of the customer group."
+      - name: meta_processing_time
+        description: "Timestamp of when the record was processed."
+
+  - name: dim_trip
+    description: "Dimension table for trip details and KPIs."
+    columns:
+      - name: trip_id
+        description: "Unique identifier for the trip."
+        tests:
+          - unique
+          - not_null
+      - name: origin_city
+        description: "Origin city of the trip."
+      - name: destination_city
+        description: "Destination city of the trip."
+      - name: aeroplane_id
+        description: "Aeroplane used for the trip."
+        tests:
+          - not_null
+      - name: start_timestamp
+        description: "Start time of the trip."
+      - name: end_timestamp
+        description: "End time of the trip."
+      - name: trip_duration_minutes
+        description: "Duration of the trip in minutes."
+      - name: total_orders
+        description: "Total number of orders for the trip."
+      - name: cancelled_orders
+        description: "Number of orders canceled for the trip."
+      - name: total_revenue
+        description: "Total revenue generated from the trip."
+      - name: revenue_cancelled_orders
+        description: "Revenue lost from canceled orders."
+      - name: meta_processing_time
+        description: "Timestamp of when the record was processed."
+
+  - name: fct_orders
+    description: "Fact table for order details."
+    columns:
+      - name: order_id
+        description: "Unique identifier for the order."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "ID of the customer who placed the order."
+        tests:
+          - not_null
+      - name: customer_group_id
+        description: "Group ID associated with the customer."
+      - name: origin_city
+        description: "Origin city of the trip associated with the order."
+      - name: destination_city
+        description: "Destination city of the trip associated with the order."
+      - name: trip_duration_minutes
+        description: "Duration of the associated trip in minutes."
+      - name: aeroplane_id
+        description: "Aeroplane used for the associated trip."
+      - name: trip_id
+        description: "Trip ID associated with the order."
+        tests:
+          - not_null
+      - name: price_eur
+        description: "Price of the order in euros."
+        tests:
+          - not_null
+      - name: order_meta_processing_tyme
+        description: "Timestamp of when the order was processed."

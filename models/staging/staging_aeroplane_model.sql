@@ -29,5 +29,5 @@ SAFE_CAST(max_seats AS INTEGER)                 AS max_seats,
 SAFE_CAST(max_weight AS INT64)                  AS max_weight,
 SAFE_CAST(max_distance AS INT64)                AS max_distance,
 SAFE_CAST(engine_type AS STRING)                AS engine_type,
-CURRENT_TIMESTAMP()                             AS meta_processing_tyme
+CURRENT_TIMESTAMP()                             AS meta_processing_time
 FROM raw_aeroplane

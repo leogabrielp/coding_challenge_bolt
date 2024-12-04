@@ -26,7 +26,7 @@ SAFE_CAST(trip_id AS INTEGER)       AS trip_id,
 SAFE_CAST(price_eur AS INT64)       AS price_eur,
 SAFE_CAST(seat_number AS STRING)    AS seat_number,
 SAFE_CAST(status AS STRING)         AS status,
-CURRENT_TIMESTAMP()                 AS meta_processing_tyme
+CURRENT_TIMESTAMP()                 AS meta_processing_time
 FROM raw_order
 
 {% if is_incremental() %}

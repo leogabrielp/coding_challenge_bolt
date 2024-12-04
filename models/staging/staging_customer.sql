@@ -23,5 +23,5 @@ SAFE_CAST(customer_full_name AS STRING) AS customer_full_name,
 SAFE_CAST(customer_group_id AS INTEGER) AS customer_group_id,
 SAFE_CAST(email AS STRING)              AS email,
 SAFE_CAST(phone_number AS STRING)       AS phone_number,
-CURRENT_TIMESTAMP()                     AS meta_processing_tyme
+CURRENT_TIMESTAMP()                     AS meta_processing_time
 FROM raw_customer

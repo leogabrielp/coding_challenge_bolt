@@ -10,12 +10,12 @@ WITH
 raw_trip AS (
 
     SELECT 
-    Trip_ID AS trip_id,
-    Origin_City AS origin_city,
+    Trip_ID         AS trip_id,
+    Origin_City     AS origin_city,
     Destination_City AS destination_city,
-    Airplane_ID AS aeroplane_id,
+    Airplane_ID     AS aeroplane_id,
     Start_Timestamp AS start_timestamp,
-    End_Timestamp AS end_timestamp
+    End_Timestamp   AS end_timestamp
     FROM {{ source('raw_data', 'raw_trip') }}
 )
 
@@ -26,14 +26,5 @@ SAFE_CAST(destination_city AS STRING)               AS destination_city,
 SAFE_CAST(aeroplane_id AS INTEGER)                  AS aeroplane_id,
 SAFE_CAST(start_timestamp AS TIMESTAMP)             AS start_timestamp,
 SAFE_CAST(end_timestamp AS TIMESTAMP)               AS end_timestamp,
-CURRENT_TIMESTAMP()                                 AS meta_processing_tyme
+CURRENT_TIMESTAMP()                                 AS meta_processing_time
 FROM raw_trip
-WHERE end_timestamp > start_timestamp
-
-{% if is_incremental() %}
-
-WHERE trip_id NOT IN (
-    SELECT DISTINCT trip_id FROM {{ this }}
-    )
-
-{% endif %}
